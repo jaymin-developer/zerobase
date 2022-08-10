@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="./style.css" />
+    <title>Document</title>
+  </head>
+  <body>
+    <div class="container">
+      <div class="tab-items">
+        <div class="tab-item">메일</div>
+        <div class="tab-item">카페</div>
+        <div class="tab-item">블로그</div>
+      </div>
+      <div class="tab-content-wrapper"></div>
+    </div>
+    <script>
+      const dataMap = {
+        메일: "메일함을 확인하세요.",
+        카페: "즐겨찾는 카페의 새 소식을 확인하세요.",
+        블로그: "오늘을 기록해보세요.",
+      };
+
+      function clickTabItem(e) {
+        const key = e.target.innerHTML;
+        const contentEL = document.querySelector(".tab-content");
+        contentEL.innerHTML = dataMap[key];
+      }
+
+      function initializeTab() {
+        const initialKey = "메일";
+        const initialValue = dataMap[initialKey];
+        const contentEL = document.querySelector(".tab-content-wrapper");
+        const pEL = document.createElement("p");
+        pEL.classList.add("tab-content");
+        pEL.innerHTML = initialValue;
+        contentEL.appendChild(pEL);
+
+        const tabs = document.querySelectorAll(".tab-item");
+        tabs.forEach((tab) => tab.addEventListener("click", clickTabItem));
+      }
+
+      initializeTab();
+    </script>
+  </body>
+</html>
